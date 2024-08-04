@@ -1,0 +1,8 @@
+.ipynb*
+.venv/
+.virtual_documents/
+.vscode/
+__pycache__
+build*/
+external/**
+CMakeUserPresets.json
