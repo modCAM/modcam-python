@@ -1,6 +1,19 @@
 {
   "dependencies": [
     "eigen3",
-    "libigl"
+    {
+      "name": "libigl",
+      "version>=": "2.6.0"
+    }
+  ],
+  "overrides": [
+    {
+      "name": "eigen3",
+      "version": "3.4.0"
+    },
+    {
+      "name": "libigl",
+      "version": "2.6.0"
+    }
   ]
 }

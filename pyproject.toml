@@ -20,8 +20,8 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "modcam"
+version = "2025.03.02"
 description = "Free and open source software for Computer Aided Manufacturing (CAM) research"
-dynamic = ["version"]
 requires-python = ">=3.8"
 readme = "README.md"
 classifiers = [
@@ -37,7 +37,14 @@ dependencies = [
 [project.urls]
 homepage = "https://github.com/modCAM/modcam-python"
 
-[project.optional-dependencies]
+[dependency-groups]
+dev = [
+    {include-group = "lint"},
+    {include-group = "test"}
+]
+lint = [
+    "ruff"
+]
 test = [
     "libigl",
     "pooch",
@@ -56,11 +63,6 @@ wheel.py-api = "cp312"
 
 [tool.scikit-build.cmake]
 build-type = "Release"
-
-[tool.scikit-build.metadata.version]
-provider = "scikit_build_core.metadata.regex"
-input = "external/modcam/include/VERSION"
-regex = '''(?P<value>\d+\.?\d*)'''
 
 [tool.cibuildwheel]
 # Necessary to see build output from the actual compilation
