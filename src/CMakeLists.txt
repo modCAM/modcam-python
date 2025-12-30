@@ -10,7 +10,7 @@
 
 set(boilerplate_build_dir ${CMAKE_CURRENT_BINARY_DIR}/boilerplate)
 execute_process(
-	COMMAND python "${modCAM_python_SOURCE_DIR}/scripts/bindings_boilerplate.py"
+	COMMAND python "${modCAM_python_SOURCE_DIR}/tools/scripts/bindings_boilerplate.py"
 		           "${CMAKE_CURRENT_SOURCE_DIR}/py_modcam"
 				   "${boilerplate_build_dir}"
 				   "modcam"

@@ -10,7 +10,7 @@
 
 cmake_minimum_required(VERSION 4.0)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake")
 
 project(
 	modCAM_python
@@ -73,8 +73,19 @@ if(NOT DEFINED CMAKE_CXX_EXTENSIONS)
 endif()
 
 # Dependencies
-list(APPEND CMAKE_PREFIX_PATH ../modcam/build/install) # TODO: Replace with FetchContent?
-find_package(modCAM CONFIG REQUIRED)
+find_package(Eigen3 REQUIRED NO_MODULE)
+find_package(libigl CONFIG REQUIRED)
+
+include(FetchContent)
+FetchContent_Declare(
+    modCAM
+    GIT_REPOSITORY https://github.com/modCAM/modcam.git
+	GIT_TAG origin/${SKBUILD_PROJECT_VERSION}
+	GIT_SHALLOW TRUE
+	GIT_PROGRESS TRUE
+	FIND_PACKAGE_ARGS
+)
+FetchContent_MakeAvailable(modCAM)
 find_package(
 	Python 3.8
 	REQUIRED COMPONENTS Development.Module

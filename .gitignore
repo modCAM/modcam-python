@@ -2,7 +2,7 @@
 .venv/
 .virtual_documents/
 .vscode/
-__pycache__
+__pycache__/
 build*/
-external/**
+dist/
 CMakeUserPresets.json

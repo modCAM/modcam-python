@@ -1,0 +1,17 @@
+{
+	"version": 3,
+	"configurePresets": [
+		{
+			"name": "vcpkg",
+			"displayName": "Build with vcpkg dependency manager",
+			"binaryDir": "build",
+			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+			"cacheVariables": {
+				"CMAKE_EXPORT_COMPILE_COMMANDS": {
+					"type": "BOOL",
+					"value": "ON"
+				}
+			}
+		}
+	]
+}
