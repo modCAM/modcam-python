@@ -10,8 +10,6 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-#include "default_types.h"
-
 #include <modcam/mesh/per_vertex_basis_pro2024.h>
 
 #include <nanobind/eigen/dense.h>
