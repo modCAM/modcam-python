@@ -1,3 +1,4 @@
+.*cache/
 .ipynb*
 .venv/
 .virtual_documents/
