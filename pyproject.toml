@@ -22,7 +22,7 @@ build-backend = "scikit_build_core.build"
 name = "modcam"
 version = "2025.03.02"
 description = "Free and open source software for Computer Aided Manufacturing (CAM) research"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 readme = "README.md"
 classifiers = [
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
