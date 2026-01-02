@@ -84,7 +84,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(modCAM)
 find_package(
-	Python 3.8
+	Python 3.9
 	REQUIRED COMPONENTS Development.Module
 	OPTIONAL_COMPONENTS Development.SABIModule
 )
