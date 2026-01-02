@@ -50,9 +50,6 @@ if(PROJECT_IS_TOP_LEVEL AND EXISTS "${LOC_PATH}")
 	message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build directory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
 
-option(MODCAM_FORCE_VIRTUAL_ENV "Throw an error if a Python virtual environment is not active." ON)
-include(check_python_venv)
-
 # Require a minimum C++ standard, but let a parent project ask for something
 # higher.
 set(MODCAM_MIN_CXX_STANDARD 20)
