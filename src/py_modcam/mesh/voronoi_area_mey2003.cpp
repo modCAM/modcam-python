@@ -50,10 +50,10 @@ the midpoint of the edge opposite the obtuse angle.
 
 Parameters
 ----------
-vertices : array_like
+vertices : ndarray
     V-by-3 (or V-by-2) matrix of vertex Cartesian coordinates. Each row
     specifies a vertex's 3D (or 2D) position.
-faces : array_like
+faces : ndarray
     F-by-3 matrix of face (triangle) indices. Each row represents a
     triangle by indexing three vertices (rows) from the `vertices` array.
 

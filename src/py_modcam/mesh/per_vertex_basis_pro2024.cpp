@@ -53,7 +53,7 @@ z-axis is aligned with the vertex normal.
 
 Parameters
 ----------
-vertex_normals : array_like
+vertex_normals : ndarray
     V-by-3 matrix of mesh vertex 3D normals
 
 Returns

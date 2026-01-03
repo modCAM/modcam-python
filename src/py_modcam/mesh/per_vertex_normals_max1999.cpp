@@ -47,10 +47,10 @@ Vertex normals are computed using a weighted sum of their surrounding face
 
 Parameters
 ----------
-vertices : array_like
+vertices : ndarray
     V-by-3 matrix of vertex Cartesian coordinates. Each row specifies a
     vertex's 3D position.
-faces : array_like
+faces : ndarray
     F-by-3 matrix of face (triangle) indices. Each row represents a
     triangle by indexing three vertices (rows) from the `vertices` array.
 
