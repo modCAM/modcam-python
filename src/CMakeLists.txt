@@ -71,9 +71,9 @@ nanobind_add_stub(
   MARKER_FILE modcam/py.typed
 )
 
-# Eventually, we should be able to recurse the modules with a CMake command:
-# https://github.com/wjakob/nanobind/pull/463
-# For now, though, we have to add submodules individually.
+# We should be able to recurse the submodules with the ``RECURSIVE`` option in
+# ``nanobind_add_stub``. However, it doesn't work as expected, and so instead we
+# add the submodules individually.
 macro(find_submodules result root_dir)
 	file(
 		GLOB_RECURSE children
