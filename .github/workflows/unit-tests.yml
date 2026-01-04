@@ -1,0 +1,53 @@
+name: Unit tests
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "LICENSE"
+      - "README.MD"
+  pull_request:
+    paths-ignore:
+      - "LICENSE"
+      - "README.MD"
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        python-version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+          - "3.14"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.9.21"
+          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run unit tests
+        run: >
+          uv run --all-extras --dev --verbose
+          --config-setting=cmake.args="--preset vcpkg"
+          --config-setting=cmake.build-type="Release"
+          pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v6
+        with:
+          name: pytest-results-${{ matrix.python-version }}
+          path: junit/test-results-${{ matrix.python-version }}.xml
+        if: ${{ always() }}
