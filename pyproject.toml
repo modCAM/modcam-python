@@ -59,7 +59,30 @@ minimum-version = "build-system.requires"
 build-dir = "build/{wheel_tag}"
 
 # Build stable ABI wheels for CPython 3.12+
-wheel.py-api = "cp312"
+# wheel.py-api = "cp312"
+# We can't use the stable ABI for now. Running abi3audit returns the following:
+#     modcam-2025.3.2-cp312-abi3-linux_x86_64.whl: 1 extensions scanned;
+#         0 ABI version mismatches and 2 ABI violations found                  
+# {
+#   "specs": {
+#     "/tmp/cibuildwheel/built_wheel/modcam-2025.3.2-cp312-abi3-linux_x86_64.whl": {
+#       "kind": "wheel",
+#       "wheel": [
+#         {
+#           "name": "modcam.cpython-312-x86_64-linux-gnu.so",
+#           "result": {
+#             "is_abi3": false,
+#             "is_abi3_baseline_compatible": true,
+#             "baseline": "3.12",
+#             "computed": "3.12",
+#             "non_abi3_symbols": ["PyFrame_GetBack", "PyGILState_Check"],
+#             "future_abi3_objects": {}
+#           }
+#         }
+#       ]
+#     }
+#   }
+# }
 
 [tool.scikit-build.cmake]
 build-type = "Release"
@@ -67,13 +90,23 @@ build-type = "Release"
 [tool.cibuildwheel]
 # Necessary to see build output from the actual compilation
 build-verbosity = 1
+config-settings = 'cmake.args="--preset vcpkg"'
 
 # Run pytest to ensure that the package was correctly built
 test-command = "pytest {project}/tests"
-test-requires = "pytest"
+test-groups = ["test"]
 
-# Don't test Python 3.8 wheels on macOS/arm64
-test-skip="cp38-macosx_*:arm64"
+[tool.cibuildwheel.linux]
+before-all = 'source tools/scripts/cibw-install-tools-linux.sh'
+environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
+
+[tool.cibuildwheel.macos]
+before-all = 'source tools/scripts/cibw-install-tools-macos.sh'
+environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
+
+[tool.cibuildwheel.windows]
+before-all = 'tools/script/cibw-install-tools-windows.ps1'
+environment = { VCPKG_ROOT='$(pwd)\\vcpkg', PATH="$VCPKG_ROOT;$PATH" }
 
 # Needed for full C++17 support
 [tool.cibuildwheel.macos.environment]

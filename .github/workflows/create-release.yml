@@ -1,11 +1,11 @@
 name: Create release
 
 on:
-  workflow_run:
-    workflows:
-      - "Unit tests"
-    types:
-      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - pyproject.toml # We need to update the version to trigger a release.
 
 jobs:
   release:
