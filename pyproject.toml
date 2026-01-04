@@ -102,12 +102,8 @@ environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
 
 [tool.cibuildwheel.macos]
 before-all = 'source tools/scripts/cibw-install-tools-macos.sh'
-environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
+environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH", MACOSX_DEPLOYMENT_TARGET="10.15" }
 
 [tool.cibuildwheel.windows]
 before-all = 'tools/script/cibw-install-tools-windows.ps1'
 environment = { VCPKG_ROOT='$(pwd)\\vcpkg', PATH="$VCPKG_ROOT;$PATH" }
-
-# Needed for full C++17 support
-[tool.cibuildwheel.macos.environment]
-MACOSX_DEPLOYMENT_TARGET = "10.15"
