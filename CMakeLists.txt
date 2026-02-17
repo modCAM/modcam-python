@@ -73,11 +73,13 @@ endif()
 find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(libigl CONFIG REQUIRED)
 
+include(zero_pad_version)
+zero_pad_version(${SKBUILD_PROJECT_VERSION} version_tag)
 include(FetchContent)
 FetchContent_Declare(
     modCAM
     GIT_REPOSITORY https://github.com/modCAM/modcam.git
-	GIT_TAG origin/${SKBUILD_PROJECT_VERSION}
+	GIT_TAG "${version_tag}"
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	FIND_PACKAGE_ARGS
