@@ -42,6 +42,12 @@ dev = [
     {include-group = "lint"},
     {include-group = "test"}
 ]
+docs = [
+    "sphinx",
+    "sphinx-book-theme",
+    "sphinx-copybutton",
+    "sphinx-design",
+]
 lint = [
     "ruff"
 ]
