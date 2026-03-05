@@ -17,6 +17,7 @@ To install the project:
 
 		.. code-block:: bash
 
+			# Requires pip >= 25.1
 			python -m venv .venv
 			source .venv/bin/activate
 			python -m pip install . --group dev --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
@@ -70,6 +71,32 @@ To build a wheel package for distribution:
 
 			# The wheel file will be placed in the dist/ directory.
 			uv build --wheel --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+
+Build the documentation
+=======================
+
+Note that if you change a docstring, you will need to rebuild the project before re-running Sphinx. This can be problematic with uv, which caches the project. You'll need to run the above ``uv sync`` command with the ``--reinstall`` flag.
+
+.. tab-set::
+	:sync-group: install-cmd
+
+	.. tab-item:: pip
+		:sync: pip
+
+		.. code-block:: bash
+
+			# Requires pip >= 25.1
+			python -m venv .venv
+			source .venv/bin/activate
+			python -m pip install . --group dev --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			sphinx-build -a -E -b html docs/ build/docs/sphinx
+
+	.. tab-item:: uv
+		:sync: uv
+
+		.. code-block:: bash
+
+			uv run --all-extras --dev --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] sphinx-build -a -E -b html docs/ build/docs/sphinx
 
 Adding bindings
 ===============
