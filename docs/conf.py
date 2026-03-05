@@ -33,6 +33,12 @@ extensions = [
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+intersphinx_mapping = {
+    "modcam-docs": ("https://modcam-docs.readthedocs.io/", None),
+    "modcam-cpp": ("https://modcam-docs.readthedocs.io/projects/modcam-cpp/", None),
+}
+intersphinx_disabled_reftypes = ["*"]
+
 
 # -- Options for HTML output ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
