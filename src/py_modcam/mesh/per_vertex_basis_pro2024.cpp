@@ -46,7 +46,7 @@ void bind_per_vertex_basis_pro2024(py::module_ &m)
 	      &py_modcam::mesh::per_vertex_basis_pro2024, "vertex_normals"_a,
 	      R"(
 Compute an orthonormal set of basis vectors for each vertex in a mesh.
-Algorithm by [1]_.
+Algorithm by [pro2024]_.
 
 Each vertex in the mesh is assigned a local coordinate system, where the
 z-axis is aligned with the vertex normal.
@@ -70,7 +70,7 @@ b2 : ndarray
 
 References
 ----------
-.. [1] prosilio. Per-vertex basis. GitHub, 2024.
+.. [pro2024] prosilio. Per-vertex basis. GitHub, 2024.
 )");
 }
 

@@ -132,7 +132,7 @@ Much of the boilerplate code generation is automated so that you don't have to w
 		m.def("bar_baz2026", &py_modcam::foo::bar_baz2026,
 			"input0"_a, "input1"_a,
 			R"(
-	Implement the bar algorithm as described in [1]_.
+	Implement the bar algorithm as described in [baz2026]_.
 
 	More detailed description here. This documentation should be copied from the C++
 	function and reformatted according to the NumPy style guide.
@@ -153,7 +153,7 @@ Much of the boilerplate code generation is automated so that you don't have to w
 
 	References
 	----------
-	.. [1] Baz, Bop. The amazing bar algorithm, 2000.
+	.. [baz2026] Baz, Bop. The amazing bar algorithm, 2000.
 	)");
 	}
 
