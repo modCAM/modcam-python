@@ -40,7 +40,7 @@ void bind_per_vertex_normals_max1999(py::module_ &m)
 	      &py_modcam::mesh::per_vertex_normals_max1999, "vertices"_a, "faces"_a,
 	      R"(
 Compute the per-vertex normal vectors for a set of vertices and faces, as
-described in [1]_.
+described in [max1999]_.
 
 Vertex normals are computed using a weighted sum of their surrounding face
 (triangle) normals.
@@ -63,8 +63,8 @@ ndarray
 
 References
 ----------
-.. [1] Nelson Max. Weights for computing vertex normals from facet normals.
-       Journal of Graphics Tools, 4:1-6, 1 1999.
+.. [max1999] Nelson Max. Weights for computing vertex normals from facet
+             normals. Journal of Graphics Tools, 4:1-6, 1 1999.
 )");
 }
 

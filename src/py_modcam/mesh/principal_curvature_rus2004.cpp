@@ -49,11 +49,11 @@ void bind_principal_curvature_rus2004(py::module_ &m)
 	      "faces"_a,
 	      R"(
 Compute the (per-vertex) principal curvature on a triangle mesh using the
-algorithm described in [1]_.
+algorithm described in [rus2004]_.
 
 While many principal curvature algorithms use a tunable "neighborhood" to
 compute their estimates, this algorithm uses only 1-ring vertex
-neighborhoods. Although the algorithm in [1]_ can be used to compute
+neighborhoods. Although the algorithm in [rus2004]_ can be used to compute
 curvature derivates, that is not done here.
 
 If the `vertices` array is empty, then all returned arrays are empty. If
@@ -81,8 +81,8 @@ pv2 : ndarray
 
 References
 ----------
-.. [1] S. Rusinkiewicz. Estimating curvatures and their derivatives on
-       triangle meshes. pages 486-493. IEEE, 2004.
+.. [rus2004] S. Rusinkiewicz. Estimating curvatures and their derivatives
+             on triangle meshes. pages 486-493. IEEE, 2004.
 )");
 }
 

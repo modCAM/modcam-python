@@ -41,7 +41,8 @@ void bind_voronoi_area_mey2003(py::module_ &m)
 	m.def("voronoi_area_mey2003", &py_modcam::mesh::voronoi_area_mey2003,
 	      "vertices"_a, "faces"_a,
 	      R"(
-Compute the Voronoi cell areas for the triangles in a mesh as described in [1]_.
+Compute the Voronoi cell areas for the triangles in a mesh as described in
+[mey2003]_.
 
 For a non-obtuse triangle, the Voronoi areas are bounded by segments
 connecting the triangle's circumcenter to the midpoints of its edges. In
@@ -68,9 +69,9 @@ ndarray
 
 References
 ----------
-.. [1] Mark Meyer, Mathieu Desbrun, Peter Schröder, and Alan H. Barr.
-       Discrete differential-geometry operators for triangulated
-       2-manifolds, 2003.
+.. [mey2003] Mark Meyer, Mathieu Desbrun, Peter Schröder, and Alan H. Barr.
+             Discrete differential-geometry operators for triangulated
+             2-manifolds, 2003.
 )");
 }
 
