@@ -2,14 +2,12 @@
 modCAM Python reference
 #######################
 
-This section provides information about the C++ library at the heart of modCAM. Here you can find information on how to use modCAM in your own project and how to build modCAM yourself, as well as reference information on the library's functions.
-
+This document provides information about the Python interface to modCAM. Here you can find reference information on the library's functions and instructions on how to add Python bindings to the project.
 
 .. toctree::
-   :caption: Contributing
    :maxdepth: 2
 
-   CONTRIBUTING
+   Contributing <CONTRIBUTING>
 
 .. toctree::
    :caption: Reference
