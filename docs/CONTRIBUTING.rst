@@ -5,7 +5,9 @@ Contributing
 Build and test the project
 ==========================
 
-Note that the following commands include an optional ``FETCHCONTENT_SOURCE_DIR_MODCAM`` config setting. You only need to include this setting if you want to build bindings for a local copy of the modCAM C++ library. This can be useful if you're experimenting with new algorithms that haven't been added to the core C++ library yet.
+The CMake presets supplied with this project use `vcpkg`_ to install the dependencies.
+
+Note that the following commands include an optional ``FETCHCONTENT_SOURCE_DIR_MODCAM`` config setting. You only need to include this setting if you want to build bindings for a local copy of the modCAM C++ library. This can be useful if you're experimenting with new algorithms that haven't been added to the core C++ repository yet.
 
 To install the project:
 
@@ -72,6 +74,8 @@ To build a wheel package for distribution:
 			# The wheel file will be placed in the dist/ directory.
 			uv build --wheel --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
+.. _vcpkg: https://vcpkg.io/
+
 Build the documentation
 =======================
 
@@ -122,7 +126,7 @@ Much of the boilerplate code generation is automated so that you don't have to w
 
 	namespace py_modcam::foo { // This project uses the `py_modcam` namespace to
 	                           // distinguish it from the core library `modcam`
-							   // namespace.
+	                           // namespace.
 
 	// This function translates the C++ function to something that Python can use.
 	// Note that
@@ -152,13 +156,13 @@ Much of the boilerplate code generation is automated so that you don't have to w
 		return result;
 	}
 
-	// This function defines the bindings for py_modcam::bar_baz2026. It must have
-	// the `bind_` prefix followed by the name of the function being bound.
+	// This function defines the bindings for py_modcam::foo::bar_baz2026. It must
+	// have the `bind_` prefix followed by the name of the function being bound.
 	void bind_bar_baz2026(py::module_ &m)
 	{
 		m.def("bar_baz2026", &py_modcam::foo::bar_baz2026,
-			"input0"_a, "input1"_a,
-			R"(
+		      "input0"_a, "input1"_a,
+		      R"(
 	Implement the bar algorithm as described in [baz2026]_.
 
 	More detailed description here. This documentation should be copied from the C++
@@ -184,4 +188,4 @@ Much of the boilerplate code generation is automated so that you don't have to w
 	)");
 	}
 
-	} // namespace py_modcam::mesh
+	} // namespace py_modcam::foo

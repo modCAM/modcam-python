@@ -4,13 +4,13 @@
 
 ModCAM is free and open source software for computer aided manufacturing (CAM) research. It is a library of algorithms for the control of manufacturing machinery, such as lathes, mills, and 3D printers.
 
-This repository contains the Python bindings for the core (C++) modCAM library. The Python package can be found on [PyPI](https://pypi.org/project/modcam/).
+This repository contains the Python bindings for the [core (C++) modCAM library](https://github.com/modCAM/modcam). The Python package can be found on [PyPI](https://pypi.org/project/modcam/).
 
 ## Documentation
 
 For tutorials and further information about the project in general, see the documentation at [https://modcam-docs.readthedocs.io/](https://modcam-docs.readthedocs.io/).
 
-For a technical reference guide to the modCAM functions, see the [Python reference page]().
+For a technical reference guide to the modCAM functions, see the [Python reference page](https://modcam-docs.readthedocs.io/projects/modcam-python/).
 
 ## Getting started
 
