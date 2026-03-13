@@ -2,6 +2,9 @@ name: C++ format check
 
 on: pull_request
 
+permissions:
+  contents: read
+
 jobs:
   check-format:
     name: Check C++ source code formatting

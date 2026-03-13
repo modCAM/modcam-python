@@ -2,6 +2,9 @@ name: Lint Python scripts
 
 on: pull_request
 
+permissions:
+  contents: read
+
 jobs:
   ruff:
     runs-on: ubuntu-latest
