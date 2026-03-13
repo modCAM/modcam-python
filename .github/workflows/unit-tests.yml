@@ -20,6 +20,10 @@ permissions:
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    container: ghcr.io/modcam/devcontainer:latest
     permissions:
       contents: read
 
