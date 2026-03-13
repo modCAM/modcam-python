@@ -19,14 +19,5 @@ jobs:
           enable-cache: true
           python-version: "3.9"
 
-      - name: Install modCAM
-        run: >
-          uv sync --all-extras --dev --verbose
-          --config-setting=cmake.args="--preset vcpkg"
-          --config-setting=cmake.build-type="Release"
-
-      - name: Activate virtual env
-        run: source .venv/bin/activate
-
       - name: Check formatting
-        run: ruff format --diff tests/ tools/
+        run: uvx ruff format --diff tests/ tools/
