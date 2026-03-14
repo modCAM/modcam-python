@@ -107,13 +107,23 @@ test-groups = ["test"]
 test-skip = "cp314t-*"
 
 [tool.cibuildwheel.linux]
-before-all = 'source tools/cibw/cibw-install-tools-linux.sh'
+before-all = [
+    "apt-get install -y curl zip unzip tar",
+    "git clone https://github.com/microsoft/vcpkg.git",
+    "./vcpkg/bootstrap-vcpkg.sh -disableMetrics",
+]
 environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
 
 [tool.cibuildwheel.macos]
-before-all = 'source tools/cibw/cibw-install-tools-macos.sh'
+before-all = [
+    "git clone https://github.com/microsoft/vcpkg.git",
+    "./vcpkg/bootstrap-vcpkg.sh -disableMetrics",
+]
 environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH", MACOSX_DEPLOYMENT_TARGET="10.15" }
 
 [tool.cibuildwheel.windows]
-before-all = './tools/cibw/cibw-install-tools-windows.ps1'
+before-all = [
+    "git clone https://github.com/microsoft/vcpkg.git",
+    ".\vcpkg\bootstrap-vcpkg.bat -disableMetrics",
+]
 environment = { VCPKG_ROOT='$(pwd)\\vcpkg', PATH="$VCPKG_ROOT;$PATH" }
