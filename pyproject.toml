@@ -111,5 +111,5 @@ before-all = 'source tools/cibw/cibw-install-tools-macos.sh'
 environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH", MACOSX_DEPLOYMENT_TARGET="10.15" }
 
 [tool.cibuildwheel.windows]
-before-all = 'tools/cibw/cibw-install-tools-windows.ps1'
+before-all = '.\\tools\\cibw\\cibw-install-tools-windows.ps1'
 environment = { VCPKG_ROOT='$(pwd)\\vcpkg', PATH="$VCPKG_ROOT;$PATH" }
