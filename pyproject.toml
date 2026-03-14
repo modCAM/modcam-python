@@ -115,12 +115,11 @@ before-all = [
     "git clone https://github.com/microsoft/vcpkg.git",
     "./vcpkg/bootstrap-vcpkg.sh -disableMetrics",
 ]
-environment = {
-    CC="clang",
-    CXX="clang++",
-    VCPKG_ROOT="$(pwd)/vcpkg",
-    PATH="$VCPKG_ROOT:$PATH",
-}
+[tool.cibuildwheel.linux.environment]
+CC="clang"
+CXX="clang++"
+VCPKG_ROOT="$(pwd)/vcpkg"
+PATH="$VCPKG_ROOT:$PATH"
 
 [tool.cibuildwheel.macos]
 before-all = [
