@@ -102,6 +102,11 @@ config-settings = 'cmake.args="--preset vcpkg"'
 test-command = "pytest {project}/tests"
 test-groups = ["test"]
 
+[tool.cibuildwheel]
+# Tests fail for free-threaded Python, because ligigl (a test dependency) does
+# not support free-threaded Python.
+test-skip = "cp314t-*"
+
 [tool.cibuildwheel.linux]
 before-all = 'source tools/cibw/cibw-install-tools-linux.sh'
 environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
@@ -113,8 +118,3 @@ environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH", MACOSX_DEPL
 [tool.cibuildwheel.windows]
 before-all = './tools/cibw/cibw-install-tools-windows.ps1'
 environment = { VCPKG_ROOT='$(pwd)\\vcpkg', PATH="$VCPKG_ROOT;$PATH" }
-
-[tool.cibuildwheel]
-# Tests fail for free-threaded Python, because ligigl (a test dependency) does
-# not support free-threaded Python.
-test-skip = "cp314t-*"
