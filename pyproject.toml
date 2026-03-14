@@ -134,3 +134,11 @@ before-all = [
     "& ./vcpkg/bootstrap-vcpkg.bat -disableMetrics",
 ]
 environment = { VCPKG_ROOT='$(pwd)\\vcpkg', PATH="$VCPKG_ROOT;$PATH" }
+
+[[tool.cibuildwheel.overrides]]
+select = "cp314t-manylinux_x86_64"
+before-all = [
+    "apk add clang curl zip unzip tar",
+    "git clone https://github.com/microsoft/vcpkg.git",
+    "./vcpkg/bootstrap-vcpkg.sh -disableMetrics",
+]
