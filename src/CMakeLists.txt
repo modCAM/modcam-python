@@ -35,6 +35,7 @@ file(
 nanobind_add_module(
 	py_modCAM
 	STABLE_ABI
+	FREE_THREADED
 	NB_STATIC
 	${boilerplate_code}
 	${sources}
