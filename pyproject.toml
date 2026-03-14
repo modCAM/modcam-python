@@ -102,8 +102,7 @@ config-settings = 'cmake.args="--preset vcpkg"'
 test-command = "pytest {project}/tests"
 test-groups = ["test"]
 
-[tool.cibuildwheel]
-# Tests fail for free-threaded Python, because ligigl (a test dependency) does
+# Tests fail for free-threaded Python, because libigl (a test dependency) does
 # not support free-threaded Python.
 test-skip = "cp314t-*"
 
