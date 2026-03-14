@@ -106,13 +106,21 @@ test-groups = ["test"]
 # not support free-threaded Python.
 test-skip = "cp314t-*"
 
+manylinux-x86_64-image = "manylinux_2_28"
+manylinux-aarch64-image = "manylinux_2_28"
+
 [tool.cibuildwheel.linux]
 before-all = [
-    "apt-get install -y curl zip unzip tar",
+    "yum install -y clang curl zip unzip tar",
     "git clone https://github.com/microsoft/vcpkg.git",
     "./vcpkg/bootstrap-vcpkg.sh -disableMetrics",
 ]
-environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
+environment = {
+    CC="clang",
+    CXX="clang++",
+    VCPKG_ROOT="$(pwd)/vcpkg",
+    PATH="$VCPKG_ROOT:$PATH",
+}
 
 [tool.cibuildwheel.macos]
 before-all = [
