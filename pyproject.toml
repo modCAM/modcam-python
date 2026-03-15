@@ -132,6 +132,8 @@ environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH", MACOSX_DEPL
 before-all = [
     "git clone https://github.com/microsoft/vcpkg.git",
     "cmd /c \".\\vcpkg\\bootstrap-vcpkg.bat -disableMetrics\"",
+    "echo $VCPKG_ROOT",
+    "ls $VCPKG_ROOT",
 ]
 environment = { VCPKG_ROOT='$(pwd)/vcpkg', PATH="$VCPKG_ROOT:$PATH" }
 
