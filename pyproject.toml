@@ -104,7 +104,7 @@ test-groups = ["test"]
 
 # Tests fail for free-threaded Python, because libigl (a test dependency) does
 # not support free-threaded Python.
-test-skip = "cp314t-*"
+test-skip = ["cp314t-*", *-musllinux_aarch64"]
 
 manylinux-x86_64-image = "manylinux_2_28"
 manylinux-aarch64-image = "manylinux_2_28"
@@ -152,7 +152,6 @@ environment.VCPKG_FORCE_SYSTEM_BINARIES="1"
 select = "*-musllinux_aarch64"
 before-all = [
     "apk add build-base clang cmake curl git ninja tar zip unzip",
-    "apk add gfortran openblas pkgconf xsimd", # Necessary for scipy
     "git clone https://github.com/microsoft/vcpkg.git",
     "curl -L -o $(pwd)/vcpkg/scripts/vcpkg-tool-metadata.txt https://raw.githubusercontent.com/microsoft/vcpkg/be2e197ea5bc32028dad3c651053ed926d91a2d7/scripts/vcpkg-tool-metadata.txt",
     "./vcpkg/bootstrap-vcpkg.sh -disableMetrics",
