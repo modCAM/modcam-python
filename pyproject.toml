@@ -133,7 +133,7 @@ before-all = [
     "git clone https://github.com/microsoft/vcpkg.git",
     "cmd /c \".\\vcpkg\\bootstrap-vcpkg.bat -disableMetrics\"",
 ]
-environment = { VCPKG_ROOT='$(pwd)/vcpkg', PATH="$VCPKG_ROOT:$PATH" }
+environment = { VCPKG_ROOT="$(pwd)/vcpkg", PATH="$VCPKG_ROOT:$PATH" }
 
 
 [[tool.cibuildwheel.overrides]]
