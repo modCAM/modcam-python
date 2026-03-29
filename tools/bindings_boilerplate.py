@@ -1,5 +1,5 @@
 import os
-import sys
+from typing import Optional
 
 
 class Module:
@@ -16,6 +16,8 @@ class Module:
             The name of the module.
     doc : str
             Short module description.
+    version : str
+            Module version.
     supermodule : Module
             The parent module that contains this module.
     funcs : list[str]
@@ -26,7 +28,8 @@ class Module:
 
     name: str
     doc: str
-    supermodule: "Module"
+    version: str
+    supermodule: Optional["Module"]
     funcs: list[str]
     submodules: list["Module"]
 
@@ -35,7 +38,8 @@ class Module:
         root_dir: str,
         build_dir: str,
         name: str = "",
-        supermodule: "Module" = None,
+        version="",
+        supermodule: Optional["Module"] = None,
     ):
         """Generate Python binding boilerplate code.
 
@@ -49,10 +53,13 @@ class Module:
                 The root directory.
         build_dir : str
                 Write C++ files to this directory.
-        name : str, optional
+        name : str
                 Override the module name. If unspecified, the module name is set to
                 the corresponding directory name. Since the constructor works
                 recursively, only the root module name can be overridden.
+        version : str
+                The module version (for example, "2.12.3"). If unspecified, the
+                module will not contain version info.
         supermodule : Module, optional
                 The parent module that contains this module. The user should leave
                 this parameter unspecified.
@@ -65,6 +72,7 @@ class Module:
         self.doc = ""
         with open(os.path.join(root_dir, "doc"), "r") as f:
             self.doc = f.read().strip()
+        self.version = version
         self.supermodule = supermodule
         self.funcs = [
             f.name[:-4]
@@ -143,6 +151,8 @@ namespace {self.dir_chain()} {{
 {newline_char.join(f"void bind_{submod.module_chain()}(py::module_ &m);" for submod in self.submodules)}
 
 NB_MODULE({self.name}, m) {{
+	{f'm.attr("__version__") = "{self.version}";' if self.version else ""}
+
 	m.doc() = R"pydoc(\n{self.doc}\n)pydoc";
 
 	{"// Function bindings" if self.funcs else ""}
@@ -186,9 +196,30 @@ void bind_{self.module_chain()}(py::module_ &m) {{
 
 
 if __name__ == "__main__":
-    root_dir = sys.argv[1]
-    build_dir = sys.argv[2]
-    root_name = ""
-    if len(sys.argv) > 3:
-        root_name = sys.argv[3]
-    root = Module(root_dir, build_dir, name=root_name)
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Generate Python binding boilerplate code"
+    )
+    parser.add_argument(
+        "root_dir", help="The root directory of the module bindings source files."
+    )
+    parser.add_argument(
+        "build_dir", help="Where to place the generated boilerplate files."
+    )
+    parser.add_argument(
+        "--name",
+        default="",
+        help="The module name. If unspecified, it defaults to the directory name.",
+    )
+    parser.add_argument(
+        "--version",
+        default="",
+        help="The module version. If unspecified, the module will not contain version info.",
+    )
+    args = parser.parse_args()
+    print(args.root_dir)
+    print(args.build_dir)
+    print(args.name)
+    print(args.version)
+    root = Module(args.root_dir, args.build_dir, name=args.name, version=args.version)
