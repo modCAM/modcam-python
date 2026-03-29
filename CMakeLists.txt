@@ -8,7 +8,7 @@
 # SPDX-FileCopyrightText: Copyright contributors to the modCAM project.
 # SPDX-License-Identifier: MPL-2.0
 
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 4.1)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake")
 

@@ -8,13 +8,18 @@
 # SPDX-FileCopyrightText: Copyright contributors to the modCAM project.
 # SPDX-License-Identifier: MPL-2.0
 
+set(Python_ARTIFACTS_PREFIX "_HOST")
+find_package(Python COMPONENTS Interpreter)
+unset(Python_ARTIFACTS_PREFIX)
+
 set(boilerplate_build_dir ${CMAKE_CURRENT_BINARY_DIR}/boilerplate)
 execute_process(
-	COMMAND python "${modCAM_python_SOURCE_DIR}/tools/bindings_boilerplate.py"
-		           "${CMAKE_CURRENT_SOURCE_DIR}/py_modcam"
-				   "${boilerplate_build_dir}"
-				   --name modcam
-				   --version ${SKBUILD_PROJECT_VERSION}
+	COMMAND "${Python_HOST_EXECUTABLE}"
+		"${modCAM_python_SOURCE_DIR}/tools/bindings_boilerplate.py"
+		"${CMAKE_CURRENT_SOURCE_DIR}/py_modcam"
+		"${boilerplate_build_dir}"
+		--name modcam
+		--version ${SKBUILD_PROJECT_VERSION}
 	COMMAND_ERROR_IS_FATAL ANY
 )
 file(
