@@ -29,7 +29,7 @@ To install the project:
 
 		.. code-block:: bash
 
-			uv sync --all-extras --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			uv sync --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
 To run the unit tests:
 
@@ -50,7 +50,7 @@ To run the unit tests:
 		.. code-block:: bash
 
 			# No need to pre-install the project. This one command will build, install, and test it.
-			uv run --all-extras --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] pytest
+			uv run --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] pytest
 
 To build a wheel package for distribution:
 
@@ -79,7 +79,7 @@ To build a wheel package for distribution:
 Build the documentation
 =======================
 
-Note that if you change a docstring, you will need to rebuild the project before re-running Sphinx. This can be problematic with uv, which caches the project. You'll need to run the above ``uv sync`` command with the ``--reinstall`` flag.
+Note that if you change a docstring in the bindings, you will need to rebuild the project before re-running Sphinx. This can be problematic with uv, which caches the project. You'll need to run this command with the ``--reinstall-package modcam`` flag.
 
 .. tab-set::
 	:sync-group: install-cmd
@@ -100,7 +100,7 @@ Note that if you change a docstring, you will need to rebuild the project before
 
 		.. code-block:: bash
 
-			uv run --all-extras --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] sphinx-build -a -E -b html docs/ build/docs/sphinx
+			uv run [--reinstall-package modcam] --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] sphinx-build -a -E -b html docs/ build/docs/sphinx
 
 Adding bindings
 ===============
