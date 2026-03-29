@@ -29,7 +29,7 @@ To install the project:
 
 		.. code-block:: bash
 
-			uv sync --all-extras --dev --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			uv sync --all-extras --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
 To run the unit tests:
 
@@ -50,7 +50,7 @@ To run the unit tests:
 		.. code-block:: bash
 
 			# No need to pre-install the project. This one command will build, install, and test it.
-			uv run --all-extras --dev --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] pytest
+			uv run --all-extras --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] pytest
 
 To build a wheel package for distribution:
 
@@ -100,7 +100,7 @@ Note that if you change a docstring, you will need to rebuild the project before
 
 		.. code-block:: bash
 
-			uv run --all-extras --dev --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] sphinx-build -a -E -b html docs/ build/docs/sphinx
+			uv run --all-extras --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] sphinx-build -a -E -b html docs/ build/docs/sphinx
 
 Adding bindings
 ===============
