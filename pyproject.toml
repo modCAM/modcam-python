@@ -39,7 +39,8 @@ homepage = "https://github.com/modCAM/modcam-python"
 [dependency-groups]
 dev = [
     {include-group = "lint"},
-    {include-group = "test"}
+    {include-group = "test"},
+    "twine",
 ]
 docs = [
     "sphinx",
