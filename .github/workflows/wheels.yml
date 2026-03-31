@@ -38,13 +38,6 @@ jobs:
         with:
           extras: "uv"
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v6
-        with:
-          name: pytest-results-${{ matrix.os }}-${{ strategy.job-index }}
-          path: junit/test-results-${{ matrix.os }}-${{ strategy.job-index }}.xml
-        if: ${{ always() }}
-
       # - name: Upload wheel artifacts
       #   uses: actions/upload-artifact@v6
       #   continue-on-error: true
