@@ -1,10 +1,9 @@
 name: Wheels
 
-# on:
-#   workflow_dispatch:
-#   release:
-#     types: [published]
-on: [pull_request]
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
 
 permissions:
   contents: read
@@ -38,17 +37,17 @@ jobs:
         with:
           extras: "uv"
 
-      # - name: Upload wheel artifacts
-      #   uses: actions/upload-artifact@v6
-      #   continue-on-error: true
-      #   with:
-      #     name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
-      #     path: ./wheelhouse/*.whl
-      #     if-no-files-found: error
-      #     compression-level: 6
-      #     overwrite: false
-      #     include-hidden-files: false
-      #     retention-days: 5
+      - name: Upload wheel artifacts
+        uses: actions/upload-artifact@v6
+        continue-on-error: true
+        with:
+          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
+          path: ./wheelhouse/*.whl
+          if-no-files-found: error
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
+          retention-days: 5
 
   build_sdist:
     name: Build source distribution
@@ -57,6 +56,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Build sdist
         run: pipx run build --sdist
@@ -70,20 +71,20 @@ jobs:
           path: dist/*.tar.gz
           retention-days: 5
 
-  # upload_pypi:
-  #   name: Publish to PyPI
-  #   needs: [build_wheels, build_sdist]
-  #   runs-on: ubuntu-latest
-  #   environment: pypi
-  #   permissions:
-  #     id-token: write
-  #   if: github.event_name == 'release' && github.event.action == 'published'
+  upload_pypi:
+    name: Publish to PyPI
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    if: github.event_name == 'release' && github.event.action == 'published'
 
-  #   steps:
-  #     - uses: actions/download-artifact@v7
-  #       with:
-  #         pattern: cibw-*
-  #         path: dist
-  #         merge-multiple: true
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
 
-  #     - uses: pypa/gh-action-pypi-publish@release/v1
+      - uses: pypa/gh-action-pypi-publish@release/v1
