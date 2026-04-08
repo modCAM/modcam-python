@@ -27,12 +27,12 @@ build:
       - asdf install uv latest
       - asdf global uv latest
       # CMake
-      - cmake_dir=`mktemp -d /tmp/cmake.XXXXXXXXXX`
-      - curl --silent --show-error --fail
+      - curl --show-error --fail
         -L https://github.com/Kitware/CMake/releases/download/v4.2.3/cmake-4.2.3-linux-x86_64.sh
-        --output $cmake_dir/cmake.sh
-      - chmod u+x $cmake_dir/cmake.sh
-      - $cmake_dir/cmake.sh --prefix=/usr/local --skip-license
+        --output cmake.sh
+      - chmod u+x cmake.sh
+      - cmake.sh --prefix=/usr/local --skip-license
+      - rm cmake.sh
       # vcpkg
       - git clone https://github.com/microsoft/vcpkg.git /root/vcpkg
       - /root/vcpkg/bootstrap-vcpkg.sh -disableMetrics
