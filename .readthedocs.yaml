@@ -22,8 +22,10 @@ build:
     - zip
   jobs:
     pre_create_environment:
+      - cmake_dir=`mktemp -d /tmp/cmake.XXXXXXXXXX`
       - ls -la $HOME
       - ls -la /tmp
+      - exit 183
       # uv
       - asdf plugin add uv
       - asdf install uv latest
