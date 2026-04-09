@@ -25,11 +25,11 @@ build:
       # CMake
       - |
         cmake_dir=`mktemp -d /tmp/cmake.XXXXXXXXXX`
-        curl --show-error --fail -L https://github.com/Kitware/CMake/releases/download/v4.2.3/cmake-4.2.3-linux-x86_64.sh --output $cmake_dir/cmake.sh
+        curl --silent --show-error --fail -L https://github.com/Kitware/CMake/releases/download/v4.2.3/cmake-4.2.3-linux-x86_64.sh --output $cmake_dir/cmake.sh
         chmod u+x $cmake_dir/cmake.sh
         mkdir -p $HOME/.local
         $cmake_dir/cmake.sh --prefix=$HOME/.local --skip-license
-        ls -la $HOME/.local
+        ls -la $HOME/.local/bin
       - exit 183
       # uv
       - asdf plugin add uv
