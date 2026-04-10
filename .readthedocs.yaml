@@ -39,11 +39,12 @@ build:
       - git clone https://github.com/microsoft/vcpkg.git $HOME/vcpkg
       - $HOME/vcpkg/bootstrap-vcpkg.sh -disableMetrics
     create_environment:
-      - uv venv --managed-python --python 3.13 "${READTHEDOCS_VIRTUALENV_PATH}"
+      - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
     install:
       - |
         VCPKG_ROOT=$HOME/vcpkg
         PATH=$VCPKG_ROOT:$HOME/.local/bin:$PATH
-        UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}"
-        uv sync --frozen --link-mode=copy --all-extras --dev --group docs \
-           --config-setting=cmake.args="--preset vcpkg"
+        UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync \
+          --link-mode=copy \
+          --group docs \
+          --config-setting=cmake.args="--preset vcpkg"
