@@ -42,8 +42,10 @@ build:
       - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
     install:
       - |
-        VCPKG_ROOT=$HOME/vcpkg
-        PATH=$VCPKG_ROOT:$HOME/.local/bin:$PATH
+        export VCPKG_ROOT=$HOME/vcpkg
+        export PATH=$VCPKG_ROOT:$HOME/.local/bin:$PATH
+        echo "PATH = $PATH"
+        ls -la $HOME/vcpkg
         UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync \
           --link-mode=copy \
           --group docs \
