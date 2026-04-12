@@ -44,6 +44,28 @@ intersphinx_disabled_reftypes = ["*"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_book_theme"
+html_theme_options = {
+    "repository_url": "https://github.com/modCAM/modcam-python",
+    "repository_branch": "main",
+    "path_to_docs": "docs",
+    "use_edit_page_button": True,
+    "use_source_button": True,
+    "use_issues_button": True,
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/modCAM/modcam-python",
+            "icon": "fa-brands fa-square-github",
+            "type": "fontawesome",
+        },
+        {
+            "name": "PyPI",
+            "url": "https://pypi.org/project/modcam/",
+            "icon": "https://img.shields.io/pypi/dw/modcam",
+            "type": "url",
+        },
+    ],
+}
 
 # -- Napoleon configuration ----------------------------------------------------
 

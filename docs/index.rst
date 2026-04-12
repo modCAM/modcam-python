@@ -2,7 +2,15 @@
 modCAM Python reference
 #######################
 
-This document provides information about the Python interface to modCAM. Here you can find reference information on the library's functions and instructions on how to add Python bindings to the project.
+This document provides information about the Python interface to modCAM. Here
+you can find reference information on the library's functions and instructions
+on how to add Python bindings to the project.
+
+.. toctree::
+   :titlesonly:
+   :hidden:
+
+   Documentation home <https://modcam-docs.readthedocs.io/>
 
 .. toctree::
    :maxdepth: 2
