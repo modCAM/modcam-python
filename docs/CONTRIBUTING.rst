@@ -5,9 +5,14 @@ Contributing
 Build and test the project
 ==========================
 
-The CMake presets supplied with this project use `vcpkg`_ to install the dependencies.
+The CMake presets supplied with this project use `vcpkg`_ to install the
+dependencies.
 
-Note that the following commands include an optional ``FETCHCONTENT_SOURCE_DIR_MODCAM`` config setting. You only need to include this setting if you want to build bindings for a local copy of the modCAM C++ library. This can be useful if you're experimenting with new algorithms that haven't been added to the core C++ repository yet.
+Note that the following commands include an optional
+``FETCHCONTENT_SOURCE_DIR_MODCAM`` config setting. You only need to include this
+setting if you want to build bindings for a local copy of the modCAM C++
+library. This can be useful if you're experimenting with new algorithms that
+haven't been added to the core C++ repository yet.
 
 To install the project:
 
@@ -22,14 +27,16 @@ To install the project:
 			# Requires pip >= 25.1
 			python -m venv .venv
 			source .venv/bin/activate
-			python -m pip install . --group dev --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			python -m pip install . --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
 	.. tab-item:: uv
 		:sync: uv
 
 		.. code-block:: bash
 
-			uv sync --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			uv sync --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
 To run the unit tests:
 
@@ -49,8 +56,11 @@ To run the unit tests:
 
 		.. code-block:: bash
 
-			# No need to pre-install the project. This one command will build, install, and test it.
-			uv run --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] pytest
+			# No need to pre-install the project. This one command will build, install, and
+			# test it.
+			uv run --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] \
+			  pytest
 
 To build a wheel package for distribution:
 
@@ -64,7 +74,8 @@ To build a wheel package for distribution:
 
 			python -m venv .venv
 			source .venv/bin/activate
-			python -m pip wheel --no-deps . --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			python -m pip wheel --no-deps . --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
 	.. tab-item:: uv
 		:sync: uv
@@ -72,14 +83,18 @@ To build a wheel package for distribution:
 		.. code-block:: bash
 
 			# The wheel file will be placed in the dist/ directory.
-			uv build --wheel --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			uv build --wheel --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 
 .. _vcpkg: https://vcpkg.io/
 
 Build the documentation
 =======================
 
-Note that if you change a docstring in the bindings, you will need to rebuild the project before re-running Sphinx. This can be problematic with uv, which caches the project. You'll need to run this command with the ``--reinstall-package modcam`` flag.
+Note that if you change a docstring in the bindings, you will need to rebuild
+the project before re-running Sphinx. This can be problematic with uv, which
+caches the project. You'll need to run this command with the
+``--reinstall-package modcam`` flag.
 
 .. tab-set::
 	:sync-group: install-cmd
@@ -92,7 +107,9 @@ Note that if you change a docstring in the bindings, you will need to rebuild th
 			# Requires pip >= 25.1
 			python -m venv .venv
 			source .venv/bin/activate
-			python -m pip install . --group dev --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
+			python -m pip install . --group docs \
+			  --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"]
 			sphinx-build -a -E -b html docs/ build/docs/sphinx
 
 	.. tab-item:: uv
@@ -100,16 +117,26 @@ Note that if you change a docstring in the bindings, you will need to rebuild th
 
 		.. code-block:: bash
 
-			uv run [--reinstall-package modcam] --group docs --config-setting=cmake.args="--preset vcpkg" [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] sphinx-build -a -E -b html docs/ build/docs/sphinx
+			uv run [--reinstall-package modcam] --group docs \
+			  --config-setting=cmake.args="--preset vcpkg" \
+			  [--config-setting=cmake.define.FETCHCONTENT_SOURCE_DIR_MODCAM="/path/to/modcam"] \
+			  sphinx-build -a -E -b html docs/ build/docs/sphinx
 
 Adding bindings
 ===============
 
-Adding Python bindings for a modCAM function should largely be an exercise in copy-and-paste. The bindings should be placed in `src/py_modcam/<namespace>/<file>.cpp`, where each of the bindings files should mirror the corresponding core library file. The Doxygen documentation should be transformed to `NumPy style`_ docstrings.
+Adding Python bindings for a modCAM function should largely be an exercise in
+copy-and-paste. The bindings should be placed in
+`src/py_modcam/<namespace>/<file>.cpp`, where each of the bindings files should
+mirror the corresponding core library file. The Doxygen documentation should be
+transformed to `NumPy style`_ docstrings.
 
 .. _NumPy style: https://numpydoc.readthedocs.io/en/latest/format.html
 
-Much of the boilerplate code generation is automated so that you don't have to worry about it. However, this automation also means that your bindings are expected to follow a particular structure. Here's an example where we bind the ``bar_baz2026`` algorithm in the ``foo`` namespace::
+Much of the boilerplate code generation is automated so that you don't have to
+worry about it. However, this automation also means that your bindings are
+expected to follow a particular structure. Here's an example where we bind the
+``bar_baz2026`` algorithm in the ``foo`` namespace::
 
 	// The file must be named bar_baz2026.cpp to match the function name.
 
